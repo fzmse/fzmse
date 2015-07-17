@@ -7,6 +7,7 @@
 
 #include <stdio.h>
 #include "Counter.h"
+
 int Counter::Increment()
 {
    return counter_++;

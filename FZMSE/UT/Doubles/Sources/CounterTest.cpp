@@ -1,5 +1,5 @@
 /*
- * CounterTest.hpp
+ * CounterTest.cpp
  *
  *  Created on: 17 lip 2015
  *      Author: pkozuch
@@ -7,7 +7,7 @@
 
 #include <iostream>
 using namespace std;
-#include "gtest/gtest.h"
+#include <gtest/gtest.h>
 
 #include "Counter.h"
 
