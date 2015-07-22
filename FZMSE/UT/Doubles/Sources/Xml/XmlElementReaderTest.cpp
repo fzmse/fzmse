@@ -5,33 +5,12 @@
 
 #include <Xml/XmlWrapper.h>
 
+#include <Utilities/vectors.hpp>
+
 using namespace tinyxml2;
 using namespace std;
 
-bool isVectorsIdentical(vector<string> a, vector<string> b)
-{
-	if ( a.size() != b.size() )
-		return false;
 
-	if ( a.size() == 0 )
-		return true;
-
-	vector<string>::iterator itA = a.begin();
-	vector<string>::iterator itB = b.begin();
-
-	while( itA != a.end() && itB != b.end())
-	{
-		if ( (*itA) == (*itB) )
-		{
-			++ itA;
-			++ itB;
-		}
-		else
-			return false;
-	}
-
-	return true;
-}
 
 TEST(XML_ELEMENT_READER, GetElementName)
 {
@@ -49,7 +28,13 @@ TEST(XML_ELEMENT_READER, GetAttributes)
 	ASSERT_EQ(XML_NO_ERROR, doc->ErrorID());
 
 	XMLElement * el = doc->RootElement()->FirstChildElement();
-	XmlElementReader::getAttributes(el);
+	vector< pair<string, string> > attributes = XmlElementReader::getAttributes(el);
 
+	vector< pair< string, string> > expected;
+	expected.push_back(pair<string, string>("class", "LNBTS"));
+	expected.push_back(pair<string, string>("name", "actAmle"));
+	expected.push_back(pair<string, string>("hidden", "false"));
+	expected.push_back(pair<string, string>("access", "public"));
 
+	ASSERT_EQ( true, isVectorsIdentical( expected, attributes));
 }

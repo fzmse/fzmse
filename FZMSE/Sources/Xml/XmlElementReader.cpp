@@ -21,11 +21,15 @@ vector< pair<string, string> > XmlElementReader::getAttributes(XMLElement * e)
 {
 	vector< pair<string, string> > result;
 	XMLAttribute * currentAttribute = (XMLAttribute*)e->FirstAttribute();
-	//if ( x == NULL )
-	//	return result;
-	//else
-	//{
-	//	while ( )
-	//}
+
+	while ( currentAttribute != NULL )
+	{
+		pair<string, string> attr;
+		attr.first = currentAttribute->Name();
+		attr.second = currentAttribute->Value();
+		result.push_back(attr);
+
+		currentAttribute = (XMLAttribute*)currentAttribute->Next();
+	}
 	return result;
 }
