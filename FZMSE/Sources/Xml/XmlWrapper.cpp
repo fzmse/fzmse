@@ -9,11 +9,11 @@
 
 using namespace tinyxml2;
 
-XmlDocument * XmlWrapper::loadDocument(std::string filename)
+XMLDocument * XmlWrapper::loadDocument(std::string filename)
 {
 	XMLDocument * doc = new XMLDocument();
 	doc->LoadFile(filename.c_str());
-	return new XmlDocument(doc);
+	return doc;
 }
 
 XmlWrapper::~XmlWrapper()
