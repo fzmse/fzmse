@@ -37,17 +37,34 @@ TEST(XML_READER, FirstChildIsRoot)
 	delete doc;
 }
 
-TEST(XML_READER, ChildrensArray)
+TEST(XML_READER, ChildrensArrayNoTag)
 {
 	XMLDocument * doc = XmlWrapper::loadDocument("UT/TestFiles/PDDB/test_pddb_1.xml");
 	XmlReader * reader = new XmlReader(doc);
 	std::string tag = "";
 	std::vector<XMLElement*> result;
 	reader->goFirstChild();
-	result = reader->getChildrens(tag);
+	result = reader->getChildren(tag);
 	for (std::vector<XMLElement*>::iterator it = result.begin() ; it != result.end(); ++it)
 	{
 		std::cout << XmlElementReader::getName(*it).c_str() << endl;
 	}
+	delete reader;
+	delete doc;
+}
 
+TEST(XML_READER, ChildrensArrayWithTag)
+{
+	XMLDocument * doc = XmlWrapper::loadDocument("UT/TestFiles/PDDB/test_pddb_1.xml");
+	XmlReader * reader = new XmlReader(doc);
+	std::string tag = "managedObject";
+	std::vector<XMLElement*> result;
+	reader->goFirstChild();
+	result = reader->getChildren(tag);
+	for (std::vector<XMLElement*>::iterator it = result.begin() ; it != result.end(); ++it)
+	{
+		std::cout << XmlElementReader::getName(*it).c_str() << endl;
+	}
+	delete reader;
+	delete doc;
 }
