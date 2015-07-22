@@ -38,3 +38,31 @@ TEST(XML_ELEMENT_READER, GetAttributes)
 
 	ASSERT_EQ( true, isVectorsIdentical( expected, attributes));
 }
+
+TEST(XML_ELEMENT_READER, GetXml)
+{
+	XMLDocument * doc = XmlWrapper::loadDocument("UT/TestFiles/PDDB/test_pddb_2.xml");
+	ASSERT_EQ(XML_NO_ERROR, doc->ErrorID());
+
+	XMLElement * el = doc->RootElement()->FirstChildElement();
+
+	cout << XmlElementReader::getXML(el);
+}
+
+TEST(XML_ELEMENT_READER, GetAttributeThatExistsByName)
+{
+	XMLDocument * doc = XmlWrapper::loadDocument("UT/TestFiles/PDDB/test_pddb_2.xml");
+	ASSERT_EQ(XML_NO_ERROR, doc->ErrorID());
+
+	XMLElement * el = doc->RootElement()->FirstChildElement();
+	ASSERT_EQ("LNBTS", XmlElementReader::getAttributeByName(el, "class") );
+}
+
+TEST(XML_ELEMENT_READER, GetAttributeThatDoesNotExistByName)
+{
+	XMLDocument * doc = XmlWrapper::loadDocument("UT/TestFiles/PDDB/test_pddb_2.xml");
+	ASSERT_EQ(XML_NO_ERROR, doc->ErrorID());
+
+	XMLElement * el = doc->RootElement()->FirstChildElement();
+	ASSERT_EQ("", XmlElementReader::getAttributeByName(el, "classx") );
+}

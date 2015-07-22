@@ -33,3 +33,19 @@ vector< pair<string, string> > XmlElementReader::getAttributes(XMLElement * e)
 	}
 	return result;
 }
+
+
+string XmlElementReader::getAttributeByName(tinyxml2::XMLElement * e, std::string name)
+{
+	const char * txtPointer = e->Attribute(name.c_str());
+	return txtPointer == NULL ? "" : txtPointer;
+}
+
+
+std::string XmlElementReader::getXML(tinyxml2::XMLElement * e)
+{
+	XMLPrinter printer;
+	e->Accept( &printer );
+	const char* xmlcstr = printer.CStr();
+	return xmlcstr == NULL ? "" : xmlcstr;
+}
