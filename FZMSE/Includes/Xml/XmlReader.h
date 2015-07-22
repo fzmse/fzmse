@@ -1,4 +1,4 @@
-#pragma once;
+#pragma once
 
 #include "TinyXML/tinyxml2.h"
 #include <vector>
@@ -18,5 +18,6 @@ public:
 	XMLElement * getChildrenByAttr(std::string tag, std::string attr, std::string value);
 	void setCurrElement(XMLElement * newElement);
 	void setNextElement();
+	void goFirstChild();
 
 };

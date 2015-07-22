@@ -21,20 +21,19 @@ XmlReader::~XmlReader()
 {
 }
 
-
 XMLElement* XmlReader::getCurrElement()
 {
 	return this->currElement;
 }
 
-std::vector<XMLElement*> XmlReader::getChildrens(std::string tag = "")
+std::vector<XMLElement*> XmlReader::getChildrens(std::string tag)
 {
 	std::vector<XMLElement*> childrens;
 	XMLElement* currChildElement;
 	if(tag == "")
-		XMLElement* currChildElement = this->currElement->FirstChildElement();
+		currChildElement = this->currElement->FirstChildElement();
 	else
-		XMLElement* currChildElement = this->currElement->FirstChildElement(tag.c_str());
+		currChildElement = this->currElement->FirstChildElement(tag.c_str());
 
 	while(currChildElement != NULL)
 	{
@@ -44,24 +43,31 @@ std::vector<XMLElement*> XmlReader::getChildrens(std::string tag = "")
 	return childrens;
 }
 
-XMLElement* XmlReader::getFirstChildren(std::string tag)
-{
-	XMLElement * a;
-	return a;
-}
-
-
-XMLElement* XmlReader::getChildrenByAttr(std::string tag, std::string attr,
-		std::string value)
-{
-	XMLElement * a;
-	return a;
-}
+//XMLElement* XmlReader::getFirstChildren(std::string tag)
+//{
+//	XMLElement * a;
+//	return a;
+//}
+//
+//
+//XMLElement* XmlReader::getChildrenByAttr(std::string tag, std::string attr,
+//		std::string value)
+//{
+//	XMLElement * a;
+//	return a;
+//}
 
 void XmlReader::setCurrElement(XMLElement* newElement)
 {
+	this->currElement = newElement;
 }
 
 void XmlReader::setNextElement()
 {
+	this->currElement = this->currElement->NextSiblingElement();
+}
+
+void XmlReader::goFirstChild()
+{
+	this->currElement->FirstChildElement();
 }
