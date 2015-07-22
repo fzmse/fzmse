@@ -26,9 +26,9 @@ XMLElement* XmlReader::getCurrElement()
 	return this->currElement;
 }
 
-std::vector<XMLElement*> XmlReader::getChildrens(std::string tag)
+std::vector<XMLElement*> XmlReader::getChildren(std::string tag)
 {
-	std::vector<XMLElement*> childrens;
+	std::vector<XMLElement*> children;
 	XMLElement* currChildElement;
 	if(tag == "")
 		currChildElement = this->currElement->FirstChildElement();
@@ -37,25 +37,16 @@ std::vector<XMLElement*> XmlReader::getChildrens(std::string tag)
 
 	while(currChildElement != NULL)
 	{
-		childrens.push_back(currChildElement);
+		children.push_back(currChildElement);
 		currChildElement = currChildElement->NextSiblingElement();
 	}
-	return childrens;
+	return children;
 }
 
-//XMLElement* XmlReader::getFirstChildren(std::string tag)
-//{
-//	XMLElement * a;
-//	return a;
-//}
-//
-//
-//XMLElement* XmlReader::getChildrenByAttr(std::string tag, std::string attr,
-//		std::string value)
-//{
-//	XMLElement * a;
-//	return a;
-//}
+XMLElement* XmlReader::getFirstChild(std::string tag)
+{
+	return this->currElement->FirstChildElement(tag.c_str());
+}
 
 void XmlReader::setCurrElement(XMLElement* newElement)
 {

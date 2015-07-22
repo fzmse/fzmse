@@ -13,9 +13,8 @@ public:
 	XmlReader(XMLElement* doc);
 	virtual ~XmlReader();
 	XMLElement * getCurrElement();
-	std::vector <XMLElement*> getChildrens(std::string tag);
-	XMLElement * getFirstChildren(std::string tag);
-	XMLElement * getChildrenByAttr(std::string tag, std::string attr, std::string value);
+	std::vector <XMLElement*> getChildren(std::string tag);
+	XMLElement * getFirstChild(std::string tag);
 	void setCurrElement(XMLElement * newElement);
 	void setNextElement();
 	void goFirstChild();
