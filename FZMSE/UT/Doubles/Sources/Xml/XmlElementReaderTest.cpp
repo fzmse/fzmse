@@ -1,11 +1,11 @@
 #include <vector>
 
 #include <gtest/gtest.h>
+#include <Utilities/UtilVector.hpp>
 #include <Xml/XmlElementReader.h>
 
 #include <Xml/XmlWrapper.h>
 
-#include <Utilities/vectors.hpp>
 
 using namespace tinyxml2;
 using namespace std;
@@ -37,6 +37,8 @@ TEST(XML_ELEMENT_READER, GetAttributes)
 	expected.push_back(pair<string, string>("access", "public"));
 
 	ASSERT_EQ( true, isVectorsIdentical( expected, attributes));
+
+	delete doc;
 }
 
 TEST(XML_ELEMENT_READER, GetXml)
@@ -47,6 +49,8 @@ TEST(XML_ELEMENT_READER, GetXml)
 	XMLElement * el = doc->RootElement()->FirstChildElement();
 
 	cout << XmlElementReader::getXML(el);
+
+	delete doc;
 }
 
 TEST(XML_ELEMENT_READER, GetAttributeThatExistsByName)
@@ -56,6 +60,8 @@ TEST(XML_ELEMENT_READER, GetAttributeThatExistsByName)
 
 	XMLElement * el = doc->RootElement()->FirstChildElement();
 	ASSERT_EQ("LNBTS", XmlElementReader::getAttributeByName(el, "class") );
+
+	delete doc;
 }
 
 TEST(XML_ELEMENT_READER, GetAttributeThatDoesNotExistByName)
@@ -65,4 +71,6 @@ TEST(XML_ELEMENT_READER, GetAttributeThatDoesNotExistByName)
 
 	XMLElement * el = doc->RootElement()->FirstChildElement();
 	ASSERT_EQ("", XmlElementReader::getAttributeByName(el, "classx") );
+
+	delete doc;
 }

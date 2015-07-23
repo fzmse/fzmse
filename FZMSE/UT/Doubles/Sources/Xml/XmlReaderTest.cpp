@@ -1,8 +1,11 @@
 #include <gtest/gtest.h>
+#include <Utilities/UtilVector.hpp>
 #include <Xml/XmlReader.h>
 #include "TinyXML/tinyxml2.h"
 #include <Xml/XmlWrapper.h>
 #include <Xml/XmlElementReader.h>
+
+
 using namespace tinyxml2;
 using namespace std;
 
@@ -65,6 +68,49 @@ TEST(XML_READER, ChildrensArrayWithTag)
 	{
 		std::cout << XmlElementReader::getName(*it).c_str() << endl;
 	}
+	delete reader;
+	delete doc;
+}
+
+TEST(XML_READER, FindElementWithSpecificAttributeOnIt)
+{
+	XMLDocument * doc = XmlWrapper::loadDocument("UT/TestFiles/PDDB/test_pddb_3.xml");
+	XmlReader * reader = new XmlReader(doc);
+
+	vector<XMLElement *> matches = XmlReader::getElementsWithSpecificNameAndAttribute((XMLElement*)doc, "managedObject", "class", "AMLEPR");
+
+	ASSERT_EQ(1, matches.size());
+
+	delete reader;
+	delete doc;
+}
+
+TEST(XML_READER, FindElementWithSpecificAttributeOnIt_AllElements)
+{
+	XMLDocument * doc = XmlWrapper::loadDocument("UT/TestFiles/PDDB/test_pddb_2.xml");
+	XmlReader * reader = new XmlReader(doc);
+
+	vector<XMLElement *> matches = XmlReader::getElementsWithSpecificNameAndAttribute((XMLElement*)doc, "", "", "");
+
+	ASSERT_EQ(6, matches.size());
+
+	delete reader;
+	delete doc;
+}
+
+
+
+TEST(XML_READER, FindLeaves)
+{
+	XMLDocument * doc = XmlWrapper::loadDocument("UT/TestFiles/PDDB/test_pddb_2.xml");
+	XmlReader * reader = new XmlReader(doc);
+
+	vector<XMLElement *> matches = XmlReader::getLeaves((XMLElement*) doc);
+
+	ASSERT_EQ(2, matches.size());
+
+	printXMLElementVector(matches);
+
 	delete reader;
 	delete doc;
 }

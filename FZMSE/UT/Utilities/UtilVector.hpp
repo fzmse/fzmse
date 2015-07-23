@@ -8,9 +8,12 @@
 
 #include <vector>
 
+#include <iostream>
+
+#include <TinyXML/tinyxml2.h>
 
 template <typename T>
-bool isVectorsIdentical(std::vector<T> a, std::vector<T> b)
+inline bool isVectorsIdentical(std::vector<T> a, std::vector<T> b)
 {
 	if ( a.size() != b.size() )
 		return false;
@@ -33,4 +36,13 @@ bool isVectorsIdentical(std::vector<T> a, std::vector<T> b)
 	}
 
 	return true;
+}
+
+inline void printXMLElementVector( std::vector<tinyxml2::XMLElement * > vec)
+{
+	int counter = 1;
+	for ( std::vector<tinyxml2::XMLElement*>::iterator it = vec.begin(); it != vec.end(); ++ it )
+	{
+		std::cout << counter ++ << ": " << (*it)->GetText() << std::endl;
+	}
 }
