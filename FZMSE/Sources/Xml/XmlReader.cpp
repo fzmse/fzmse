@@ -49,7 +49,10 @@ std::vector<XMLElement*> XmlReader::getChildren(std::string tag)
 
 XMLElement* XmlReader::getFirstChild(std::string tag)
 {
-	return this->currElement->FirstChildElement(tag.c_str());
+	if(tag == "")
+		return this->currElement->FirstChildElement();
+	else
+		return this->currElement->FirstChildElement(tag.c_str());
 }
 
 void XmlReader::setCurrElement(XMLElement* newElement)

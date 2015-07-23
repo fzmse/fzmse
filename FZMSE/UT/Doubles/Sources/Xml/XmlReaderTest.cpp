@@ -114,3 +114,56 @@ TEST(XML_READER, FindLeaves)
 	delete reader;
 	delete doc;
 }
+
+TEST(XML_READER, getFirstChild)
+{
+	XMLDocument * doc = XmlWrapper::loadDocument("UT/TestFiles/PDDB/test_pddb_1.xml");
+	XmlReader * reader = new XmlReader(doc);
+	XMLElement* doc_element;
+	std::string tag = "";
+
+	reader->goFirstChild();
+	reader->goFirstChild();
+	doc_element = doc->FirstChildElement();
+	doc_element = doc_element->FirstChildElement();
+
+	std::string a = XmlElementReader::getName(reader->getFirstChild(tag));
+	std::string b = XmlElementReader::getName(doc_element).c_str();
+	EXPECT_EQ(a, b);
+	delete reader;
+	delete doc;
+}
+
+TEST(XML_READER, setCurrElement)
+{
+	XMLDocument * doc = XmlWrapper::loadDocument("UT/TestFiles/PDDB/test_pddb_3.xml");
+	XmlReader * reader = new XmlReader(doc);
+	XMLElement* doc_element = doc->FirstChildElement();
+	doc_element = doc_element->FirstChildElement();
+
+	reader->setCurrElement(doc_element);
+
+	std::string a = XmlElementReader::getName(reader->getCurrElement());
+	std::string b = XmlElementReader::getName(doc_element);
+	EXPECT_EQ(a, b);
+
+	delete reader;
+	delete doc;
+}
+
+TEST(XML_READER, deferentElements)
+{
+	XMLDocument * doc = XmlWrapper::loadDocument("UT/TestFiles/PDDB/test_pddb_3.xml");
+	XmlReader * reader = new XmlReader(doc);
+	XMLElement* doc_element = doc->FirstChildElement();
+
+	doc_element = doc_element->FirstChildElement();
+	reader->setCurrElement(doc_element);
+
+	std::string a = XmlElementReader::getName(reader->getCurrElement());
+	std::string b = XmlElementReader::getName(doc->FirstChildElement());
+	EXPECT_EQ(true, a!=b);
+
+	delete reader;
+	delete doc;
+}
