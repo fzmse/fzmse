@@ -159,3 +159,10 @@ std::vector<XMLElement *> XmlReader::getLeaves(XMLElement * e)
 
 	return results;
 }
+
+XMLElement* XmlReader::getParent(XMLElement * e)
+{
+	XMLNode * n = e->Parent();
+	return n == NULL ? NULL : (XMLElement*)n;
+}
+

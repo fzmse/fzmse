@@ -136,7 +136,7 @@ TEST(XML_READER, getFirstChild)
 
 TEST(XML_READER, setCurrElement)
 {
-	XMLDocument * doc = XmlWrapper::loadDocument("UT/TestFiles/PDDB/test_pddb_3.xml");
+	XMLDocument * doc = XmlWrapper::loadDocument("UT/TestFiles/PDDB/test_pddb_1.xml");
 	XmlReader * reader = new XmlReader(doc);
 	XMLElement* doc_element = doc->FirstChildElement();
 	doc_element = doc_element->FirstChildElement();
@@ -153,7 +153,7 @@ TEST(XML_READER, setCurrElement)
 
 TEST(XML_READER, deferentElements)
 {
-	XMLDocument * doc = XmlWrapper::loadDocument("UT/TestFiles/PDDB/test_pddb_3.xml");
+	XMLDocument * doc = XmlWrapper::loadDocument("UT/TestFiles/PDDB/test_pddb_1.xml");
 	XmlReader * reader = new XmlReader(doc);
 	XMLElement* doc_element = doc->FirstChildElement();
 
@@ -163,6 +163,25 @@ TEST(XML_READER, deferentElements)
 	std::string a = XmlElementReader::getName(reader->getCurrElement());
 	std::string b = XmlElementReader::getName(doc->FirstChildElement());
 	EXPECT_EQ(true, a!=b);
+
+	delete reader;
+	delete doc;
+}
+
+TEST(XML_READER, GetParentElement)
+{
+	XMLDocument * doc = XmlWrapper::loadDocument("UT/TestFiles/PDDB/test_pddb_2.xml");
+	XmlReader * reader = new XmlReader(doc);
+
+	vector<XMLElement *> matches = XmlReader::getLeaves((XMLElement*) doc);
+
+	for ( vector<XMLElement *>::iterator it = matches.begin(); it != matches.end(); ++ it )
+	{
+		XMLElement* e = *it;
+		XMLNode * n = XmlReader::getParent(e);
+		if ( n != NULL )
+			cout << XmlElementReader::getName((XMLElement*)n) << " -> " << XmlElementReader::getName(e) << endl;
+	}
 
 	delete reader;
 	delete doc;
