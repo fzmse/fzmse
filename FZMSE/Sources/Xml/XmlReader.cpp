@@ -10,6 +10,7 @@
 #include "Xml/XmlReader.h"
 #include "Xml/XmlElementReader.h"
 
+using namespace tinyxml2;
 
 XmlReader::XmlReader(XMLDocument* doc)
 {
@@ -32,12 +33,17 @@ XMLElement* XmlReader::getCurrElement()
 
 std::vector<XMLElement*> XmlReader::getChildren(std::string tag)
 {
+	return getChildren(this->currElement, tag);
+}
+
+std::vector <tinyxml2::XMLElement*> XmlReader::getChildren(tinyxml2::XMLElement* e, std::string tag)
+{
 	std::vector<XMLElement*> children;
 	XMLElement* currChildElement;
 	if(tag == "")
-		currChildElement = this->currElement->FirstChildElement();
+		currChildElement = e->FirstChildElement();
 	else
-		currChildElement = this->currElement->FirstChildElement(tag.c_str());
+		currChildElement = e->FirstChildElement(tag.c_str());
 
 	while(currChildElement != NULL)
 	{

@@ -11,6 +11,11 @@
 
 using namespace InternalTypes;
 
+InternalTypes::Attribute::Attribute()
+{
+
+}
+
 InternalTypes::Attribute::Attribute(std::string key, std::string value)
 {
 	this->key = key;
@@ -49,4 +54,11 @@ void InternalTypes::Attribute::setValue(std::string v)
 {
 	this->value = v;
 	this->second = v;
+}
+
+
+
+bool Attribute::operator == (Attribute & b)
+{
+	return this->key == b.getKey() && this->value == b.getValue();
 }

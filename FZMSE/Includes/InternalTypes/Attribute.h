@@ -6,9 +6,10 @@
 
 namespace InternalTypes
 {
-	struct Attribute : std::pair<std::string, std::string>
+	class Attribute : std::pair<std::string, std::string>
 	{
 	public:
+		Attribute();
 		Attribute ( std::string key, std::string value );
 		Attribute ( std::pair<std::string, std::string> );
 
@@ -18,8 +19,9 @@ namespace InternalTypes
 		void setKey( std::string k );
 		void setValue( std::string v );
 
+		bool operator == (Attribute & b);
+
 	protected:
-		Attribute();
 
 		std::string key;
 		std::string value;

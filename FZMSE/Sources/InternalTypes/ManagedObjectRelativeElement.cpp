@@ -31,6 +31,11 @@ void ManagedObjectRelativeElement::setAttributes( std::vector<Attribute> a)
 	this->attributes = a;
 }
 
+std::vector<Attribute> ManagedObjectRelativeElement::getAttributes()
+{
+	return this->attributes;
+}
+
 XMLElement * ManagedObjectRelativeElement::getElement()
 {
 	return this->element;

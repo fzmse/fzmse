@@ -38,6 +38,9 @@ inline bool isVectorsIdentical(std::vector<T> a, std::vector<T> b)
 	return true;
 }
 
+
+
+
 inline void printXMLElementVector( std::vector<tinyxml2::XMLElement * > vec)
 {
 	int counter = 1;

@@ -18,6 +18,8 @@
 #include "Xml/XmlReader.h"
 #include "Xml/XmlElementReader.h"
 
+#include "Utilities/UtilVector.hpp"
+
 namespace InternalTypes
 {
 	class PBDBManagedObject : public ManagedObjectRelativeElement
@@ -31,7 +33,7 @@ namespace InternalTypes
 		~PBDBManagedObject();
 
 		std::vector<PBDBManagedObjectParameter*> getParameters();
-		PBDBManagedObjectCompareResult compare(PBDBManagedObject * moc);
+		std::vector<PBDBManagedObjectCompareResult> compare(PBDBManagedObject * moc);
 
 		bool isValidMocObject();
 	protected:

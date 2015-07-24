@@ -7,6 +7,8 @@
 
 #pragma once
 
+#include <vector>
+
 #include "TinyXML/tinyxml2.h"
 #include "ManagedObjectRelativeElement.h"
 
@@ -17,6 +19,15 @@ namespace InternalTypes
 	public:
 		PBDBManagedObjectParameter( tinyxml2::XMLElement * pElement );
 		virtual ~PBDBManagedObjectParameter();
+
+		bool isValidMocParameter();
+		std::vector<ManagedObjectRelativeElement *> getProperties();
+		std::string getParameterName();
+
+	protected:
+		std::vector<ManagedObjectRelativeElement* > properties;
+		bool validMocParameter;
+
 
 	};
 }

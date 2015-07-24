@@ -3,22 +3,22 @@
 #include "TinyXML/tinyxml2.h"
 #include <vector>
 #include <string>
-using namespace tinyxml2;
 
 class XmlReader {
 protected:
-	XMLElement* currElement;
+	tinyxml2::XMLElement* currElement;
 public:
-	XmlReader(XMLDocument* doc);
-	XmlReader(XMLElement* doc);
+	XmlReader(tinyxml2::XMLDocument* doc);
+	XmlReader(tinyxml2::XMLElement* doc);
 	virtual ~XmlReader();
-	XMLElement * getCurrElement();
-	std::vector <XMLElement*> getChildren(std::string tag);
-	XMLElement * getFirstChild(std::string tag);
-	void setCurrElement(XMLElement * newElement);
+	tinyxml2::XMLElement * getCurrElement();
+	std::vector <tinyxml2::XMLElement*> getChildren(std::string tag);
+	static std::vector <tinyxml2::XMLElement*> getChildren(tinyxml2::XMLElement* e, std::string tag);
+	tinyxml2::XMLElement * getFirstChild(std::string tag);
+	void setCurrElement(tinyxml2::XMLElement * newElement);
 	void setNextElement();
 	void goFirstChild();
-	static std::vector<XMLElement *> getElementsWithSpecificNameAndAttribute(XMLElement * e, std::string name, std::string attributeName = "", std::string attributeValue = "");
-	static std::vector<XMLElement *> getLeaves(XMLElement * e);
-	static tinyxml2::XMLElement* getParent(XMLElement * e);
+	static std::vector<tinyxml2::XMLElement *> getElementsWithSpecificNameAndAttribute(tinyxml2::XMLElement * e, std::string name, std::string attributeName = "", std::string attributeValue = "");
+	static std::vector<tinyxml2::XMLElement *> getLeaves(tinyxml2::XMLElement * e);
+	static tinyxml2::XMLElement* getParent(tinyxml2::XMLElement * e);
 };

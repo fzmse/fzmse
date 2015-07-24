@@ -25,7 +25,7 @@ namespace InternalTypes
 		virtual ~ManagedObjectRelativeElement();
 
 		std::vector<Attribute> getAttributes();
-		std::vector<XMLElement *> getChildXmlElements();
+		std::vector<tinyxml2::XMLElement *> getChildXmlElements();
 		tinyxml2::XMLElement * getElement();
 
 		void setAttributes( std::vector<Attribute> a);
