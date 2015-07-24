@@ -18,7 +18,7 @@ public:
 	void setCurrElement(XMLElement * newElement);
 	void setNextElement();
 	void goFirstChild();
-	static std::vector<XMLElement *> getElementsWithSpecificNameAndAttribute(XMLElement * e, std::string name, std::string attributeName, std::string attributeValue);
+	static std::vector<XMLElement *> getElementsWithSpecificNameAndAttribute(XMLElement * e, std::string name, std::string attributeName = "", std::string attributeValue = "");
 	static std::vector<XMLElement *> getLeaves(XMLElement * e);
 	static tinyxml2::XMLElement* getParent(XMLElement * e);
 };
