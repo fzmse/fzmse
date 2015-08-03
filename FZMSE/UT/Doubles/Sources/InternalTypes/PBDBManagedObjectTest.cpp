@@ -182,6 +182,8 @@ TEST( PBDBManagedObjectCompare, CompareModifyParameterAttribute)
 	EXPECT_EQ(PBDBManagedObjectCompareResult::AttributeDifference, differences[0].getType());
 	EXPECT_EQ(PBDBManagedObjectCompareResult::Modified, differences[0].getOrigin());
 
+	// passes
+
 	delete mocFirst;
 	delete mocSecond;
 	delete docFirst;
